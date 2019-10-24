@@ -4,6 +4,9 @@
 ## Add
 D:\git-0804117\cmd\git.exe add .
 
+## Check Changes
+D:\git-0804117\cmd\git.exe status
+
 ## Commit
 D:\git-0804117\cmd\git.exe commit -m "Creation"
 
