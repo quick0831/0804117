@@ -10,7 +10,10 @@ main(){
 	for(i=2;i<=input;i++){
 		bool isPrime=true;
 		for(j=2;j<=sqrt(i);j++){
-			if(i%j==0) isPrime=false;
+			if(i%j==0){
+				isPrime=false;
+				break;
+			}
 		}
 		if(isPrime==true){
 			cout<<setw(12)<<i;
