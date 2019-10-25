@@ -5,7 +5,7 @@ using namespace std;
 
 main(){
 	int input,i,j,total=1;
-	cout<<"è«‹è¼¸å…¥ä¸€å€‹æ•¸å­—ï¼š";
+	cout<<"½Ğ¿é¤J¤@­Ó¼Æ¦r¡G";
 	cin>>input;
 	cout<<setw(12)<<2;
 	for(i=3;i<=input;i+=2){
@@ -21,6 +21,6 @@ main(){
 			total++;
 		}
 	}
-	cout<<endl<<"å…±"<<total<<"å€‹è³ªæ•¸"<<endl; 
+	cout<<endl<<"¦@"<<total<<"­Ó½è¼Æ"<<endl; 
 	system("pause");
 }
