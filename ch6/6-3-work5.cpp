@@ -4,10 +4,11 @@
 using namespace std;
 
 main(){
-	int input,i,j,total;
-	cout<<"½Ð¿é¤J¤@­Ó¼Æ¦r¡G";
+	int input,i,j,total=1;
+	cout<<"è«‹è¼¸å…¥ä¸€å€‹æ•¸å­—ï¼š";
 	cin>>input;
-	for(i=2;i<=input;i++){
+	cout<<setw(12)<<2;
+	for(i=3;i<=input;i+=2){
 		bool isPrime=true;
 		for(j=2;j<=sqrt(i);j++){
 			if(i%j==0){
@@ -20,6 +21,6 @@ main(){
 			total++;
 		}
 	}
-	cout<<endl<<"¦@"<<total<<"­Ó½è¼Æ"<<endl; 
+	cout<<endl<<"å…±"<<total<<"å€‹è³ªæ•¸"<<endl; 
 	system("pause");
 }
