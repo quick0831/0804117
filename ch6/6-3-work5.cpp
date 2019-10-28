@@ -5,8 +5,8 @@ using namespace std;
 
 main(){
 	int input,i,j,total=1,sqrt_i;
-	const short store_prime_range=168;
-	short prime[store_prime_range],last=2;
+	//const short store_prime_range=168;
+	//short prime[store_prime_range],last=2;
 	bool isPrime;
 	cout<<"請輸入一個數字：";
 	cin>>input;
@@ -17,6 +17,10 @@ main(){
 			isPrime=false;
 		else
 			isPrime=true;
+		for(j=2;j<=sqrt_i && isPrime;j++)
+			if(i%j==0)
+				isPrime=false;
+		/* 
 		for(j=0;j<store_prime_range && j<total;j++){
 			if(i%prime[j]==0)
 				isPrime=false;
@@ -24,12 +28,14 @@ main(){
 		for(j=last+1;j<=sqrt_i && isPrime;j++)
 			if(i%j==0)
 				isPrime=false;
+		*/ 
 		if(isPrime==true){
 			cout<<setw(12)<<i;
+			/* 
 			if(total<store_prime_range){
 				prime[total]=i;
 				last=i;
-			}
+			}*/ 
 			total++;
 		}
 	}
