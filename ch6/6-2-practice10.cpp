@@ -20,8 +20,10 @@ main(){
 			cout<<" ";
 		cout<<"*"<<endl;
 	}
-	cout<<h%10;
-	//long wall No2
-	for(int i=1; i<=w; i++)
-		cout<<"*";
+	if(h!=1){
+		cout<<h%10;
+		//long wall No2
+		for(int i=1; i<=w; i++)
+			cout<<"*";
+	}
 }
