@@ -5,7 +5,7 @@
 using namespace std;
 
 main(){
-	int i,j,n[6],m[7],hit;
+	int i,j,n[6],m[7],hit,temp;
 	// n是投注號碼 m是開獎號碼 *(m+6)是特別號 hit是中獎球數 
 	bool pass,loop;
 	srand((unsigned int)time(NULL)); rand();
@@ -41,6 +41,13 @@ main(){
 		}
 		
 		//sort
+		for(i=0;i<5;i++)
+			for(j=0;j<5-i;j++)
+				if(*(m+j) > *(m+j+1)){
+					temp = *(m+j);
+					*(m+j) = *(m+j+1);
+					*(m+j+1) = temp;
+				}
 		
 		//output
 		cout<<endl<<"本期你選的數字為：";
