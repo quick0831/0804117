@@ -26,10 +26,7 @@ main(){  // 主函數
 	while(true){  // 迴圈
 		cout<<"請做出您的猜測：";  // 提示文字
 		cin>>input;  // 接收輸入
-		if(input<high && input>low){  // 判斷輸入是否合法
-			if(input==code) break;  // 判斷猜中跳出
-			if(input<code) low=input;  // 猜得太低了
-			else high=input;  // 猜得太高了
+		if(input<
 			cout<<"終極密碼在 "<<low<<" ~ "<<high<<" 之間"<<endl;  // 顯示線索
 			if(high-low==2) break;  // 判斷是否只剩一種可能答案
 		}else{  // 否則
