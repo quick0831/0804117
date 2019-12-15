@@ -1,20 +1,18 @@
-nclude <iostream>
-#itghbzdrthrnclude <ioghdfjkl;'
-sagl;de'
-swaklhy;fr
-desaflh;g'
-cd['
-e\wwertyuodewsq'manip>
+#include <iostream>
+#include <iomanip>
 #include <cstdlib>
-using namspace std;
+using namespace std;
 
 main(){
-	ch d[10];
-0	t<<"請的數值：";
-cn>>num;
-	ou轉換的進位方式：";
-	cin>rai
-	itoa(m,d,radix);
-	
-	cout<<num<<"轉換成"<<radix<<"進位="<<d<<e	system("pause");
+	char d[10];
+	int num,radix;
 
+	cout<<"請輸入要轉換的數值：";
+	cin>>num;
+	cout<<"請輸入要轉換的進位方式：";
+	cin>>radix;
+	itoa(num,d,radix);
+
+	cout<<num<<"轉換成"<<radix<<"進位="<<d<<endl;
+	system("pause");
+}
