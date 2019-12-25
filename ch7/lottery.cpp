@@ -1,92 +1,87 @@
-#include <iostream>
-#include <iomanip>
-#include <cstdlib>
-#include <ctime>
-using namespace std;
-
-main(){
-	int i,j,n[6],m[7],hit,temp;
+#include <iostream>  // 匯入標頭檔 iostream
+#include <iomanip>  // 匯入標頭檔 iomanip
+#include <cstdlib>  // 匯入標頭檔 cstdlib
+#include <ctime>  // 匯入標頭檔 ctime
+using namespace std;  // 宣告命名空間 std
+// 一點空間
+main(){  // 主函數
+	int i,j,n[6],m[7],hit,temp;  // 定義整數變數
 	// n是投注號碼 m是開獎號碼 *(m+6)是特別號 hit是中獎球數 
-	bool pass,loop;
-	srand((unsigned int)time(NULL)); rand();
-	cout<<"大樂透模擬遊戲"<<endl;
-	cout<<"請依序輸入六個號碼，必須是1~49的數字，且不可以重複。"<<endl;
-	for(i=0;i<6;i++){
-		cout<<"第"<<i+1<<"個數字：";
-		cin>>*(n+i);
-		pass=true;
-		for(j=0;j<i;j++)
-			if(*(n+i)==*(n+j)){
-				cout<<"已經輸入過這個數字，請重新輸入！"<<endl;
-				pass=false;
-				break;
-			}
-		if(*(n+i)<1 || *(n+i)>49){
-			cout<<"輸入的數字超出1~49的範圍，請重新輸入！"<<endl;
-			pass=false;
-		}
-		if(!pass) i--;
-	}
-	loop=true;
-	while(loop){
-		//randomize
-		for(i=0;i<=6;i++){
-			*(m+i)=rand()%49+1;
-			pass=true;
-			for(j=0;j<i;j++)
-				if(*(m+i)==*(m+j)){
-					i--;
-					break;
-				}
-		}
-		
-		//sort
-		for(i=0;i<5;i++)
-			for(j=0;j<5-i;j++)
-				if(*(m+j) > *(m+j+1)){
-					temp = *(m+j);
-					*(m+j) = *(m+j+1);
-					*(m+j+1) = temp;
-				}
-		
-		//output
-		cout<<endl<<"本期你選的數字為：";
-		for(i=0;i<6;i++) cout<<setw(3)<<*(n+i);
-		cout<<endl<<"本期開出樂透號碼：";
-		for(i=0;i<6;i++) cout<<setw(3)<<*(m+i);
-		cout<<"  特別號： "<<*(m+6)<<endl;
-		
-		//check prize
-		pass=false;
-		for(i=0;i<=6;i++)
-			if(*(n+i)==*(m+6)){
-				pass=true;
-				break;
-			}
-		hit=0;
-		for(i=0;i<=6;i++)
-			for(j=0;j<6;j++)
-				if(*(n+i)==*(m+j)){
-					hit++;
-					break;
-				}
-		if(pass){
-			if(hit==2) cout<<"你中柒獎";
-			else if(hit==3) cout<<"你中陸獎";
-			else if(hit==4) cout<<"你中肆獎";
-			else if(hit==5) cout<<"你中貳獎";
-			else cout<<"你沒中獎";
-		}else{
-			if(hit==3) cout<<"你中普獎";
-			else if(hit==4) cout<<"你中伍獎";
-			else if(hit==5) cout<<"你中參獎";
-			else if(hit==6) cout<<"你中頭獎";
-			else cout<<"你沒中獎";
-		}
-		
-		//loop
-		cout<<endl<<"是否要繼續開獎(1)是(2)否：";
-		cin>>i;
-		if(i==2) loop=false;
-	}
-}
+	bool pass,loop;  //定義控制變數
+	srand((unsigned int)time(NULL)); rand();  // 初始化亂數
+	cout<<"大樂透模擬遊戲"<<endl;  // 顯示功能資訊
+	cout<<"請依序輸入六個號碼，必須是1~49的數字，且不可以重複。"<<endl;  // 顯示功能資訊
+	for(i=0;i<6;i++){  // 以迴圈接收輸入
+		cout<<"第"<<i+1<<"個數字：";  // 輸出已輸入的進度
+		cin>>*(n+i);  // 接收輸入
+		pass=true;  // 初始化檢查值
+		for(j=0;j<i;j++)  // 輪詢之前輸入的數字
+			if(*(n+i)==*(n+j)){  // 如果前後有兩數相等
+				cout<<"已經輸入過這個數字，請重新輸入！"<<endl;  // 產生錯誤訊息
+				pass=false;  // 檢查值設為不通過
+				break;  // 直接跳出，節省時間
+			}  // 判斷結束
+		if(*(n+i)<1 || *(n+i)>49){  // 若數值不在範圍內
+			cout<<"輸入的數字超出1~49的範圍，請重新輸入！"<<endl;  // 產生錯誤訊息
+			pass=false;  // 檢查值設為不通過
+		}  // 判斷結束
+		if(!pass) i--;  // 若未通過檢查，回去重輸入
+	}  // 結束迴圈
+	loop=true;  // 初始化迴圈
+	while(loop){  // 為了可以使使用者可重複開獎，在此加一個迴圈
+		// 產生中獎號碼(亂數)
+		for(i=0;i<=6;i++){  // 重複執行6次
+			*(m+i)=rand()%49+1;  // 產生一亂數
+			for(j=0;j<i;j++)  // 輪詢之前產生的數字
+				if(*(m+i)==*(m+j)){  // 如果前後有兩數相等
+					i--;  // 向前回去重生成亂數
+					break;  // 直接跳出，節省時間
+				}  // 判斷結束
+		}  // 結束迴圈
+		// 中獎號碼排序
+		for(i=0;i<5;i++)  // 輪詢中獎號碼(最後一個不用)
+			for(j=0;j<5-i;j++)  // 輪詢在其之前的數字
+				if(*(m+j) > *(m+j+1)){  // 如果前者大於後者，則做交換數字
+					temp = *(m+j);  // 將變數儲入暫存空間
+					*(m+j) = *(m+j+1);  // 移動值
+					*(m+j+1) = temp;  // 將暫存空間值放回變數
+				}  // 判斷結束
+		// 開獎 (輸出中獎號碼)
+		cout<<endl<<"本期你選的數字為：";  // 輸出下注號碼
+		for(i=0;i<6;i++) cout<<setw(3)<<*(n+i);  // 輸出下注號碼
+		cout<<endl<<"本期開出樂透號碼：";  // 輸出中獎號碼
+		for(i=0;i<6;i++) cout<<setw(3)<<*(m+i);  // 輸出中獎號碼
+		cout<<"  特別號： "<<*(m+6)<<endl;  // 輸出特別號
+		// 判斷獎項
+		pass=false;  // 初始化判斷
+		for(i=0;i<=6;i++)  // 輪詢下注號碼
+			if(*(n+i)==*(m+6)){  // 若與特別號相同
+				pass=true;  // 特別號有中
+				break;  // 直接跳出，節省時間
+			}  // 判斷結束
+		hit=0;  // 初始化累加值(對中的球數，不含特別號)
+		for(i=0;i<=6;i++)  // 輪詢下注號碼
+			for(j=0;j<6;j++)  // 輪詢中獎號碼(不含特別號)
+				if(*(n+i)==*(m+j)){  // 若下注號碼與中獎號碼相同
+					hit++;  // 對中一個數
+					break;  // 直接跳出，節省時間
+				}  // 判斷結束
+		if(pass){  // 如果有中特別號
+			if(hit==2) cout<<"你中柒獎";       // 如果中2個號碼，則是中柒獎
+			else if(hit==3) cout<<"你中陸獎";  // 如果中3個號碼，則是中陸獎
+			else if(hit==4) cout<<"你中肆獎";  // 如果中4個號碼，則是中肆獎
+			else if(hit==5) cout<<"你中貳獎";  // 如果中5個號碼，則是中貳獎
+			else cout<<"你沒中獎";  // 否則沒中獎
+		}else{  // 如果沒中特別號
+			if(hit==3) cout<<"你中普獎";       // 如果中3個號碼，則是中普獎
+			else if(hit==4) cout<<"你中伍獎";  // 如果中4個號碼，則是中伍獎
+			else if(hit==5) cout<<"你中參獎";  // 如果中5個號碼，則是中參獎
+			else if(hit==6) cout<<"你中頭獎";  // 如果中6個號碼，則是中頭獎
+			else cout<<"你沒中獎";  // 否則沒中獎
+		}  // 判斷結束
+		// 向使用者確定是否要重複開獎
+		cout<<endl<<"是否要繼續開獎(1)是(2)否：";  // 顯示功能資訊
+		cin>>i;  // 接收輸入
+		if(i==2) loop=false;  // 跳出迴圈
+	}  // 結束迴圈
+}  // 程式結束
