@@ -10,6 +10,6 @@ int add(int a,int b){
 }
 
 main(){
-	cout<<add(10266256216210,100)<<endl;
+	cout<<add(10,100)<<endl;
 	system("pause");
 } 
